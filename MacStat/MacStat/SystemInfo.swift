@@ -1,10 +1,3 @@
-//
-//  SystemInfo.swift
-//  MacStat
-//
-//  Created by alex haidar on 8/15/24.
-//
-
 import Foundation
 import MachO
 
@@ -140,5 +133,14 @@ class SystemInfo {
         default:
             return "-- --"
         }
+    }
+
+    static func getSystemUptime() -> String {
+        let uptime = ProcessInfo.processInfo.systemUptime
+        let days = Int(uptime) / 86400
+        let hours = (Int(uptime) % 86400) / 3600
+        let minutes = (Int(uptime) % 3600) / 60
+        let seconds = Int(uptime) % 60
+        return "\(days)d \(hours)h \(minutes)m \(seconds)s"
     }
 }

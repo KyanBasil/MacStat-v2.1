@@ -1,10 +1,3 @@
-//
-//  StatsController.swift
-//  MacStat
-//
-//  Created on 10/5/24.
-//
-
 import Foundation
 
 class StatsController: ObservableObject {
@@ -18,6 +11,7 @@ class StatsController: ObservableObject {
     
     @Published var memoryUsage: Double = SystemInfo.getActiveMemory()
     @Published var cpuUsage: Int = SystemInfo.getCPUUsage()
+    @Published var systemUptime: String = SystemInfo.getSystemUptime()
     @Published var memoryUsagePercentageHistory: [Int] = .init(repeating: 0, count: 20)
     @Published var cpuUsagePercentageHistory: [Int] = .init(repeating: 0, count: 20)
 
@@ -28,9 +22,11 @@ class StatsController: ObservableObject {
         timer.setEventHandler {
             let memoryUsage = SystemInfo.getActiveMemory()
             let cpuUsage = SystemInfo.getCPUUsage()
+            let systemUptime = SystemInfo.getSystemUptime()
             DispatchQueue.main.async {
                 self.memoryUsage = memoryUsage
                 self.cpuUsage = cpuUsage
+                self.systemUptime = systemUptime
                 self.updateHistories()
             }
         }

@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  MacStat
-//
-//  Created by alex haidar on 8/9/24.
-//
-
 import SwiftUI
 import AppKit
 
@@ -79,6 +72,28 @@ struct ContentView: View {
                     .font(.system(size: 15.17, weight: .light, design: .default))
                     .opacity(0.7)
             }
+            
+            Divider()
+                .opacity(2.0)
+                .padding(.vertical, 4)
+            
+            HStack {
+                Image(systemName: "clock")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+                    .opacity(0.7)
+                    .frame(width: 60)
+                
+                Text("System Uptime :")
+                    .font(.system(size: 15.17, weight: .regular, design: .default))
+                    .opacity(0.7)
+                
+                Spacer()
+                
+                Text(statsController.systemUptime)
+                    .font(.system(size: 17, weight: .semibold, design: .default))
+            }
                         
             TemperatureChartView()
                 .padding(.top, 20)
@@ -91,4 +106,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
