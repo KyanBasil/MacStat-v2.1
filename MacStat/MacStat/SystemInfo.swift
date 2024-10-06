@@ -1,12 +1,6 @@
-//
-//  SystemInfo.swift
-//  MacStat
-//
-//  Created by alex haidar on 8/15/24.
-//
-
 import Foundation
 import MachO
+import CryptoKit
 
 class SystemInfo {
     
@@ -140,5 +134,31 @@ class SystemInfo {
         default:
             return "-- --"
         }
+    }
+    
+    static func encryptData(data: Data, key: SymmetricKey) -> Data? {
+        do {
+            let sealedBox = try AES.GCM.seal(data, using: key)
+            return sealedBox.combined
+        } catch {
+            print("Error encrypting data: \(error)")
+            return nil
+        }
+    }
+    
+    static func decryptData(data: Data, key: SymmetricKey) -> Data? {
+        do {
+            let sealedBox = try AES.GCM.SealedBox(combined: data)
+            let decryptedData = try AES.GCM.open(sealedBox, using: key)
+            return decryptedData
+        } catch {
+            print("Error decrypting data: \(error)")
+            return nil
+        }
+    }
+    
+    static func validateInput(_ input: String) -> Bool {
+        let allowedCharacters = CharacterSet.alphanumerics
+        return input.rangeOfCharacter(from: allowedCharacters.inverted) == nil
     }
 }

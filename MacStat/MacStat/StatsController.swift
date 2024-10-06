@@ -1,11 +1,5 @@
-//
-//  StatsController.swift
-//  MacStat
-//
-//  Created on 10/5/24.
-//
-
 import Foundation
+import os.log
 
 class StatsController: ObservableObject {
     
@@ -32,6 +26,7 @@ class StatsController: ObservableObject {
                 self.memoryUsage = memoryUsage
                 self.cpuUsage = cpuUsage
                 self.updateHistories()
+                self.logActivity(memoryUsage: memoryUsage, cpuUsage: cpuUsage)
             }
         }
         timer.resume()
@@ -44,5 +39,10 @@ class StatsController: ObservableObject {
         
         self.cpuUsagePercentageHistory.append(self.cpuUsage)
         self.cpuUsagePercentageHistory = Array(self.cpuUsagePercentageHistory.dropFirst())
+    }
+    
+    private func logActivity(memoryUsage: Double, cpuUsage: Int) {
+        let logger = Logger(subsystem: "com.yourcompany.MacStat", category: "StatsController")
+        logger.log("Memory Usage: \(memoryUsage) GB, CPU Usage: \(cpuUsage)%")
     }
 }

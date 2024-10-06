@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  MacStat
-//
-//  Created by alex haidar on 8/9/24.
-//
-
 import SwiftUI
 import AppKit
 
@@ -85,10 +78,22 @@ struct ContentView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            validateInputs()
+        }
+    }
+    
+    func validateInputs() {
+        let inputs = [systemModelAndChip, "\(totalCores)", "\(totalMemory)"]
+        for input in inputs {
+            if !SystemInfo.validateInput(input) {
+                print("Invalid input detected: \(input)")
+                // Handle invalid input appropriately
+            }
+        }
     }
 }
 
 #Preview {
     ContentView()
 }
-

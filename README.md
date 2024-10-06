@@ -47,6 +47,17 @@ MacStat will be available and free to use for a limited time in order to guage i
 ***Feel free to contact me here for any questions or feedback, or if interested in contributing to this project :3***
 alexh2877@gmail.com
 
+## Security Policy ##
+
+We take security seriously and have implemented several measures to ensure the safety of our users' data. Please refer to our [Security Policy](SECURITY.md) for detailed information.
+
+### Reporting Vulnerabilities ###
+
+If you discover a security vulnerability, please report it to us. You can contact us at:
+- Email: security@macstat.com
+
+We appreciate and encourage responsible disclosure of security vulnerabilities. Please include as much information as possible to help us understand and resolve the issue quickly.
+
 ## License ##
 ### The MIT License (MIT)
 
