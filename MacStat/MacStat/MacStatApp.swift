@@ -1,10 +1,3 @@
-//
-//  MacStatApp.swift
-//  MacStat
-//
-//  Created by alex haidar on 8/9/24.
-//
-
 import SwiftUI
 import Dispatch
 
